@@ -1,4 +1,3 @@
-var querystring = require('querystring');
 var http = require('http');
 
 module.exports = function (context, req) {
@@ -13,9 +12,9 @@ module.exports = function (context, req) {
 	var cognitiveServicePath =  + "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false"
 	var ocpApimSubscriptionKey = process.env.OcpApimSubscriptionKey;
 	
-	var post_data = querystring.stringify({
-		"url":fileUrl
-	});
+	var post_data = JSON.stringify({
+    	url: fileUrl
+	})
 	
 	// An object of options to indicate where to post to
 	var post_options = {
