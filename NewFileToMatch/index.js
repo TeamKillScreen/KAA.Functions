@@ -110,7 +110,7 @@ function matchFace(context, face)
 		res.on('end', function () {
     		context.log('Face match response: ', body);
 			
-			context.log('Complete.');
+			linkFaceWithPersistedFace(context, body);
   		});
 	});
 	
@@ -121,4 +121,14 @@ function matchFace(context, face)
 	// post the data
 	post_req.write(post_data);
 	post_req.end();
+}
+
+function linkFaceWithPersistedFace(context, body)
+{
+	var jsonObject = JSON.parse(body);
+	context.log('Number of persisted faces matched:' + jsonObject.length);
+	
+	jsonObject.forEach(function(face) {
+		// Todo: Call back to API to detail which missing persons (persisted faces) have been matched.
+	}, this);
 }
