@@ -29,17 +29,22 @@ module.exports = function (context, req) {
 		}
 	};
 	
+	var body = ''
 	// Set up the request
 	var post_req = http.request(post_options, function(res) {
 		res.setEncoding('utf8');
-		var str = ''
+		
 		res.on('data', function (chunk) {
-			str += chunk;
+			body += chunk;
 		});
 		
 		res.on('end', function () {
-    		context.log(str);
+    		context.log(body);
   		});
+	});
+	
+	post_req.on('error', function(e) {
+		context.log('problem with request: ' + e.message);
 	});
 	
 	// post the data
