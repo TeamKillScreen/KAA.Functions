@@ -45,7 +45,7 @@ module.exports = function (context, req) {
 		res.on('end', function () {
     		context.log(body);
 			
-			matchFaces(body);
+			matchFaces(context, body);
 			
 			context.log('Complete.');
 			context.done();
@@ -62,7 +62,7 @@ module.exports = function (context, req) {
 	post_req.end();
 };
 
-function matchFaces(body)
+function matchFaces(context, body)
 {
 	context.log('Matched number of faces:' + body.length);
 }
