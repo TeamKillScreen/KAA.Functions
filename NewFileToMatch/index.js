@@ -64,5 +64,6 @@ module.exports = function (context, req) {
 
 function matchFaces(context, body)
 {
-	context.log('Matched number of faces:' + body.length);
+	var jsonObject = JSON.parse(body);
+	context.log('Matched number of faces:' + jsonObject.length);
 }
