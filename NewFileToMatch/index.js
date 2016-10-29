@@ -1,4 +1,4 @@
-var http = require('http');
+var https = require('https');
 
 module.exports = function (context, req) {
     context.log('Starting...');
@@ -31,7 +31,7 @@ module.exports = function (context, req) {
 	
 	var body = ''
 	// Set up the request
-	var post_req = http.request(post_options, function(res) {
+	var post_req = https.request(post_options, function(res) {
 		res.setEncoding('utf8');
 		
 		res.on('data', function (chunk) {
