@@ -9,12 +9,16 @@ module.exports = function (context, req) {
 	context.log('File: ', filePath);
     context.log('Url: ', fileUrl);
 	
-	var cognitiveServicePath =  + "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false"
+	var cognitiveServicePath = "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false"
 	var ocpApimSubscriptionKey = process.env.OcpApimSubscriptionKey;
 	
 	var post_data = JSON.stringify({
     	url: fileUrl
 	})
+	
+	context.log('Service Url', process.env.CognitiveServiceUri);
+	context.log('Path: ', cognitiveServicePath);
+	context.log('Post Data: ', post_data);
 	
 	// An object of options to indicate where to post to
 	var post_options = {
