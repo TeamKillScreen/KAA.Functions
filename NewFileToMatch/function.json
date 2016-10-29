@@ -1,13 +1,14 @@
 {
   "bindings": [
     {
-      "type": "httpTrigger",
-      "name": "req",
       "webHookType": "genericJson",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "authLevel": "function",
       "methods": [
         "post"
-      ],
-      "direction": "in"
+      ]
     }
   ],
   "disabled": false
