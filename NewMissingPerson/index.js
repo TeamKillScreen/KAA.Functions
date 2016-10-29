@@ -44,17 +44,18 @@ module.exports = function (context, req) {
 		
 		res.on('end', function () {
     		context.log(body);
+			
+			context.log('Complete.');
+    		context.done();
   		});
 	});
 	
 	post_req.on('error', function(e) {
 		context.log('problem with request: ' + e.message);
+		context.done();
 	});
 	
 	// post the data
 	post_req.write(post_data);
 	post_req.end();
-	
-	context.log('Complete.');
-    context.done();
 };
