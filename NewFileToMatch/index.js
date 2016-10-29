@@ -1,10 +1,10 @@
 var querystring = require('querystring');
 var http = require('http');
 
-module.exports = function (context, myBlob) {
+module.exports = function (context, req) {
     context.log('Starting...');
     
-	var filePath = context.bindingData.blobTrigger;
+	var filePath = req.FilePath;
 	var fileUrl = process.env.StorageUri + filePath;
 	
 	context.log('File: ', filePath);

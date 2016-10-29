@@ -1,11 +1,13 @@
 {
   "bindings": [
     {
-      "name": "myBlob",
-      "type": "blobTrigger",
-      "direction": "in",
-      "path": "identity",
-      "connection": "storagekeepingupappear_STORAGE"
+      "type": "httpTrigger",
+      "name": "req",
+      "webHookType": "genericJson",
+      "methods": [
+        "post"
+      ],
+      "direction": "in"
     }
   ],
   "disabled": false
