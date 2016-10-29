@@ -25,7 +25,8 @@ module.exports = function (context, req) {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			'Ocp-Apim-Subscription-Key' : ocpApimSubscriptionKey
+			'Ocp-Apim-Subscription-Key' : ocpApimSubscriptionKey,
+			'Content-Length': Buffer.byteLength(post_data),
 		}
 	};
 	
