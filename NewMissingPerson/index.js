@@ -9,6 +9,7 @@ module.exports = function (context, req) {
 	
 	context.log('File: ', filePath);
     context.log('Url: ', fileUrl);
+	context.log('PersonId: ', personId);
 	
 	var cognitiveServicePath = "/face/v1.0/facelists/missingpersons/persistedFaces";
 	var ocpApimSubscriptionKey = process.env.OcpApimSubscriptionKey;
