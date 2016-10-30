@@ -62,10 +62,11 @@ module.exports = function (context, req) {
 function updatePerson(context, data, personId, filePath)
 {
 	var path = "/api/relatemugshot";
+	var jsonObject = JSON.parse(data);
 	
 	var post_data = JSON.stringify({
     	personId: personId,
-		persistedFaceId: data.persistedFaceId,
+		persistedFaceId: jsonObject.persistedFaceId,
 		filePath: filePath
 	})
 	
