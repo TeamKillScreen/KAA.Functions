@@ -129,7 +129,7 @@ function linkFaceWithPersistedFace(context, body, filePath, face)
 	context.log('Number of persisted faces matched:' + jsonObject.length);
 	
 	jsonObject.forEach(function(persistedFace) {
-		relateFaceWithPersistedFace(context, face, persistedFace);
+		relateFaceWithPersistedFace(context, face, filePath, persistedFace);
 	}, this);
 }
 
