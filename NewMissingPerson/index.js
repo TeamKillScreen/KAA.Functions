@@ -46,6 +46,7 @@ module.exports = function (context, req) {
 		
 		res.on('end', function () {
     		context.log(body);
+			context.log('Status code: ', res.statusCode);
 			updatePerson(context, body, personId, filePath);
   		});
 	});
