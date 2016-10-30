@@ -13,8 +13,12 @@ module.exports = function (context, req) {
 	var cognitiveServicePath = "/face/v1.0/facelists/missingpersons/persistedFaces/" + req.persistedFaceId;
 	var ocpApimSubscriptionKey = process.env.OcpApimSubscriptionKey;
 	
+	var post_data = JSON.stringify({
+	})
+	
 	context.log('Service Url', process.env.CognitiveServiceUri);
 	context.log('Path: ', cognitiveServicePath);
+	context.log('Post Data: ', post_data);
 	
 	// An object of options to indicate where to post to
 	var post_options = {
@@ -49,6 +53,6 @@ module.exports = function (context, req) {
 	});
 	
 	// post the data
-	post_req.write(null);
+	post_req.write(post_data);
 	post_req.end();
 };
