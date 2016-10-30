@@ -7,7 +7,7 @@
       "direction": "in",
       "authLevel": "function",
       "methods": [
-        "delete"
+        "post"
       ]
     }
   ],
