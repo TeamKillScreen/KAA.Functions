@@ -9,7 +9,7 @@ module.exports = function (context, req) {
 	context.log('File: ', filePath);
 	context.log('Url: ', fileUrl);
 	
-	var cognitiveServicePath = "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false";
+	var cognitiveServicePath = "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=true";
 	var ocpApimSubscriptionKey = process.env.OcpApimSubscriptionKey;
 	
 	var post_data = JSON.stringify({
@@ -85,7 +85,8 @@ function matchFace(context, face, filePath)
     	faceId: face.faceId,
 		faceListId: "missingpersons",
 		maxNumOfCandidatesReturned: 10,
-    	mode: "matchPerson"
+    	mode: "matchPerson",
+		faceAttributes: face.faceAttributes
 	})
 	
 	var post_options = {
