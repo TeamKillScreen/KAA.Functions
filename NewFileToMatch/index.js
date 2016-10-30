@@ -68,11 +68,11 @@ function matchFaces(context, body, filePath)
 	context.log('Matched number of faces:' + jsonObject.length);
 	
 	jsonObject.forEach(function(face) {
-		matchFace(context, face);
+		matchFace(context, face, filePath);
 	}, this);
 }
 
-function matchFace(context, face)
+function matchFace(context, face, filePath)
 {
 	context.log('Trying to match face: ', face);
 	
@@ -110,7 +110,7 @@ function matchFace(context, face)
 		res.on('end', function () {
     		context.log('Face match response: ', body);
 			
-			linkFaceWithPersistedFace(context, body);
+			linkFaceWithPersistedFace(context, body, filePath, face);
   		});
 	});
 	
@@ -123,12 +123,63 @@ function matchFace(context, face)
 	post_req.end();
 }
 
-function linkFaceWithPersistedFace(context, body)
+function linkFaceWithPersistedFace(context, body, filePath, face)
 {
 	var jsonObject = JSON.parse(body);
 	context.log('Number of persisted faces matched:' + jsonObject.length);
 	
-	jsonObject.forEach(function(face) {
-		// Todo: Call back to API to detail which missing persons (persisted faces) have been matched.
+	jsonObject.forEach(function(persistedFace) {
+		relateFaceWithPersistedFace(context, face, persistedFace);
 	}, this);
+}
+
+function relateFaceWithPersistedFace(context, face, filePath, persistedFace)
+{
+	var path = "/api/relatefacetomugshot";
+	
+	var post_data = JSON.stringify({
+		persistedFaceId: persistedFace.persistedFaceId,
+		confidence: persistedFace.confidence,
+		filePath: filePath,
+		faceId: face.faceId,
+		faceRectangle: face.faceRectangle
+	})
+	
+	context.log('KAA API Service Url', process.env.KAAApi);
+	context.log('PUT Path: ', path);
+	context.log('PUT Data: ', post_data);
+	
+	// An object of options to indicate where to post to
+	var post_options = {
+		host: process.env.KAAApi,
+		port: '443',
+		path: path,
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			'Content-Length': Buffer.byteLength(post_data),
+		}
+	};
+	
+	var body = ''
+	// Set up the request
+	var post_req = https.request(post_options, function(res) {
+		res.setEncoding('utf8');
+		
+		res.on('data', function (chunk) {
+			body += chunk;
+		});
+		
+		res.on('end', function () {
+    		context.log(body);
+  		});
+	});
+	
+	post_req.on('error', function(e) {
+		context.log('problem with request: ' + e.message);
+	});
+	
+	// post the data
+	post_req.write(post_data);
+	post_req.end();
 }
