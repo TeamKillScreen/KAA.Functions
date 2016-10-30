@@ -174,6 +174,7 @@ function relateFaceWithPersistedFace(context, face, filePath, persistedFace)
 		
 		res.on('end', function () {
     		context.log(body);
+			context.log('Status code: ', res.statusCode);
   		});
 	});
 	

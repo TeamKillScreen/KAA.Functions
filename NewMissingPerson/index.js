@@ -98,6 +98,7 @@ function updatePerson(context, data, personId, filePath)
 		
 		res.on('end', function () {
     		context.log(body);
+			context.log('Status code: ', res.statusCode);
 			context.log('Complete.');
     		context.done();
   		});
