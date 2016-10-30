@@ -9,7 +9,7 @@ module.exports = function (context, req) {
 	context.log('File: ', filePath);
 	context.log('Url: ', fileUrl);
 	
-	var cognitiveServicePath = "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=true";
+	var cognitiveServicePath = "/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender";
 	var ocpApimSubscriptionKey = process.env.OcpApimSubscriptionKey;
 	
 	var post_data = JSON.stringify({
