@@ -86,8 +86,7 @@ function matchFace(context, face, filePath)
 		faceListId: "missingpersons",
 		maxNumOfCandidatesReturned: 10,
     	mode: "matchPerson",
-		faceAttributes: face.faceAttributes
-	})
+	});
 	
 	var post_options = {
 		host: process.env.CognitiveServiceUri,
@@ -145,7 +144,8 @@ function relateFaceWithPersistedFace(context, face, filePath, persistedFace)
 		confidence: persistedFace.confidence,
 		filePath: filePath,
 		faceId: face.faceId,
-		faceRectangle: face.faceRectangle
+		faceRectangle: face.faceRectangle,
+		faceAttributes: face.faceAttributes
 	})
 	
 	context.log('KAA API Service Url', process.env.KAAApi);
